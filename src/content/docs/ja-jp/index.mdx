@@ -1,0 +1,70 @@
+---
+title: d6e 開発者ドキュメント
+description: d6e はセルフホスト可能な AI ワークプラットフォームです。公開 API・MCP・Plugin・Docker STF・カスタムフロントエンドの全体像とリファレンス。
+template: splash
+hero:
+  tagline: すべてが公開 API。既存システムと疎結合な AI ワークプラットフォーム。
+  actions:
+    - text: d6e とは
+      link: /ja-jp/getting-started/what-is-d6e/
+      icon: right-arrow
+      variant: primary
+    - text: 開発パスの選び方
+      link: /ja-jp/getting-started/choosing-a-path/
+      icon: open-book
+      variant: minimal
+---
+
+import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+## どこから読むか
+
+<CardGrid>
+  <LinkCard
+    title="全体像をつかむ"
+    href="/ja-jp/getting-started/what-is-d6e/"
+    description="インスタンス・ワークスペース・d6e-auth・公開 API の関係"
+  />
+  <LinkCard
+    title="ローカル AI で開発する"
+    href="/ja-jp/guides/local-ai-development/"
+    description="Cursor / Claude Code / Codex をインスタンス MCP に接続"
+  />
+  <LinkCard
+    title="REST API リファレンス"
+    href="/ja-jp/reference/rest-api/"
+    description="認証・SQL・ファイル・STF・ワークフロー・SaaS"
+  />
+  <LinkCard
+    title="MCP ツール一覧"
+    href="/ja-jp/reference/mcp-tools/"
+    description="約 96 個の d6e_* ツール（チャットエージェントと同じ面）"
+  />
+</CardGrid>
+
+## 作れるもの
+
+<CardGrid>
+  <Card title="Plugin" icon="puzzle">
+    プロンプト・STF・ワークフローを `template.yaml` にパッケージ化し、URL または Marketplace からインストール。
+    [ガイド →](/ja-jp/guides/plugins/)
+  </Card>
+  <Card title="Docker STF" icon="seti:docker">
+    任意言語のコンテナ。stdin/stdout の JSON 契約だけで動く可搬なビジネスロジック。
+    [ガイド →](/ja-jp/guides/docker-stf/)
+  </Card>
+  <Card title="カスタムフロントエンド" icon="laptop">
+    OAuth2 でログインし公開 API を呼ぶ、独立した普通の Web アプリ。
+    [ガイド →](/ja-jp/guides/custom-frontend/)
+  </Card>
+</CardGrid>
+
+## AI エージェント向け
+
+このサイトの全文は [`/llms.txt`](/llms.txt) から取得できます。設計思想の raw Markdown は [www.d6e.ai/docs/design-philosophy.ja.md](https://www.d6e.ai/docs/design-philosophy.ja.md) でも配信しています。
+
+実装スキル（Agent Skills）は次の公開リポジトリにあります。
+
+- [d6e-plugin-skills](https://github.com/d6e-ai/d6e-plugin-skills)
+- [d6e-docker-stf-skills](https://github.com/d6e-ai/d6e-docker-stf-skills)
+- [d6e-custom-frontend-skills](https://github.com/d6e-ai/d6e-custom-frontend-skills)

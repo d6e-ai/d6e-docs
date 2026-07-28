@@ -1,0 +1,70 @@
+---
+title: d6e Developer Documentation
+description: d6e is a self-hostable AI work platform. Architecture, public API, MCP, Plugins, Docker STFs, and custom frontends.
+template: splash
+hero:
+  tagline: Everything is a public API. A loosely coupled AI work platform.
+  actions:
+    - text: What is d6e?
+      link: /en-us/getting-started/what-is-d6e/
+      icon: right-arrow
+      variant: primary
+    - text: Choosing a path
+      link: /en-us/getting-started/choosing-a-path/
+      icon: open-book
+      variant: minimal
+---
+
+import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+## Where to start
+
+<CardGrid>
+  <LinkCard
+    title="Get the big picture"
+    href="/en-us/getting-started/what-is-d6e/"
+    description="Instances, workspaces, d6e-auth, and the public API"
+  />
+  <LinkCard
+    title="Develop with a local AI agent"
+    href="/en-us/guides/local-ai-development/"
+    description="Connect Cursor / Claude Code / Codex to the instance MCP"
+  />
+  <LinkCard
+    title="REST API reference"
+    href="/en-us/reference/rest-api/"
+    description="Auth, SQL, files, STFs, workflows, SaaS"
+  />
+  <LinkCard
+    title="MCP tools"
+    href="/en-us/reference/mcp-tools/"
+    description="~96 d6e_* tools — the same surface as the chat agent"
+  />
+</CardGrid>
+
+## What you can build
+
+<CardGrid>
+  <Card title="Plugin" icon="puzzle">
+    Package prompts, STFs, and workflows in `template.yaml` and install from URL or the Marketplace.
+    [Guide →](/en-us/guides/plugins/)
+  </Card>
+  <Card title="Docker STF" icon="seti:docker">
+    Any-language containers with a stdin/stdout JSON contract — portable business logic.
+    [Guide →](/en-us/guides/docker-stf/)
+  </Card>
+  <Card title="Custom frontend" icon="laptop">
+    An ordinary web app that logs users in via OAuth2 and calls the public API.
+    [Guide →](/en-us/guides/custom-frontend/)
+  </Card>
+</CardGrid>
+
+## For AI agents
+
+The full site text is available at [`/llms.txt`](/llms.txt). Raw design-philosophy Markdown is also served from [www.d6e.ai/docs/design-philosophy.md](https://www.d6e.ai/docs/design-philosophy.md).
+
+Implementation skills (Agent Skills) live in these public repositories:
+
+- [d6e-plugin-skills](https://github.com/d6e-ai/d6e-plugin-skills)
+- [d6e-docker-stf-skills](https://github.com/d6e-ai/d6e-docker-stf-skills)
+- [d6e-custom-frontend-skills](https://github.com/d6e-ai/d6e-custom-frontend-skills)

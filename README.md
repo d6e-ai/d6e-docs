@@ -23,9 +23,11 @@ npm run preview
 
 ## Content
 
-- Japanese (default / root locale): `src/content/docs/`
-- English: `src/content/docs/en/`
+- Japanese: `src/content/docs/ja-jp/` → public URL `/ja-JP/` (Edge middleware)
+- English: `src/content/docs/en-us/` → public URL `/en-US/`
+- Visiting `/` redirects by `Accept-Language` (Japanese preferred when tied; default `ja-JP`)
 - Sidebar & i18n: `astro.config.mjs`
+- Locale middleware: `middleware.ts`
 
 AI agents can fetch the full corpus at `/llms.txt` after deploy.
 

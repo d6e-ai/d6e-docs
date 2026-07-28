@@ -1,13 +1,14 @@
 // @ts-check
 // Astro + Starlight config for docs.d6e.ai.
-// Japanese is the default (root) locale; English lives under /en/.
-// AI agents can fetch llms.txt / raw Markdown via starlight-llms-txt.
+// Locale *paths* are lowercase (ja-jp / en-us) because Astro content slugs
+// are lowercased. HTML lang tags stay ja-JP / en-US. Edge middleware
+// canonicalizes the address bar to /ja-JP/ and /en-US/ (same as www.d6e.ai).
+// Root `/` is redirected by middleware based on Accept-Language.
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import starlightLlmsTxt from 'starlight-llms-txt';
 
 // https://astro.build/config
-// Static Starlight site. Vercel auto-detects Astro static output.
 export default defineConfig({
 	site: 'https://docs.d6e.ai',
 	integrations: [
@@ -28,96 +29,97 @@ export default defineConfig({
 				}
 			],
 			customCss: ['./src/styles/custom.css'],
-			defaultLocale: 'root',
+			defaultLocale: 'ja-jp',
 			locales: {
-				root: {
+				'ja-jp': {
 					label: '日本語',
-					lang: 'ja'
+					lang: 'ja-JP'
 				},
-				en: {
+				'en-us': {
 					label: 'English',
-					lang: 'en'
+					lang: 'en-US'
 				}
 			},
+			disable404Route: true,
 			editLink: {
 				baseUrl: 'https://github.com/d6e-ai/d6e-docs/edit/main/'
 			},
 			sidebar: [
 				{
 					label: 'はじめに',
-					translations: { en: 'Getting started' },
+					translations: { 'en-us': 'Getting started' },
 					items: [
 						{
 							label: 'd6e とは',
-							translations: { en: 'What is d6e?' },
+							translations: { 'en-us': 'What is d6e?' },
 							slug: 'getting-started/what-is-d6e'
 						},
 						{
 							label: 'アーキテクチャ',
-							translations: { en: 'Architecture' },
+							translations: { 'en-us': 'Architecture' },
 							slug: 'getting-started/architecture'
 						},
 						{
 							label: '設計思想',
-							translations: { en: 'Design philosophy' },
+							translations: { 'en-us': 'Design philosophy' },
 							slug: 'getting-started/design-philosophy'
 						},
 						{
 							label: '開発パスの選び方',
-							translations: { en: 'Choosing a path' },
+							translations: { 'en-us': 'Choosing a path' },
 							slug: 'getting-started/choosing-a-path'
 						}
 					]
 				},
 				{
 					label: 'ガイド',
-					translations: { en: 'Guides' },
+					translations: { 'en-us': 'Guides' },
 					items: [
 						{
 							label: 'ローカル AI 開発',
-							translations: { en: 'Local AI development' },
+							translations: { 'en-us': 'Local AI development' },
 							slug: 'guides/local-ai-development'
 						},
 						{
 							label: 'Plugin 開発',
-							translations: { en: 'Plugin development' },
+							translations: { 'en-us': 'Plugin development' },
 							slug: 'guides/plugins'
 						},
 						{
 							label: 'Docker STF 開発',
-							translations: { en: 'Docker STF development' },
+							translations: { 'en-us': 'Docker STF development' },
 							slug: 'guides/docker-stf'
 						},
 						{
 							label: 'カスタムフロントエンド',
-							translations: { en: 'Custom frontend' },
+							translations: { 'en-us': 'Custom frontend' },
 							slug: 'guides/custom-frontend'
 						}
 					]
 				},
 				{
 					label: 'コアコンセプト',
-					translations: { en: 'Core concepts' },
+					translations: { 'en-us': 'Core concepts' },
 					items: [
 						{
 							label: 'コアコンセプト',
-							translations: { en: 'Core concepts' },
+							translations: { 'en-us': 'Core concepts' },
 							slug: 'concepts/core-concepts'
 						}
 					]
 				},
 				{
 					label: 'リファレンス',
-					translations: { en: 'Reference' },
+					translations: { 'en-us': 'Reference' },
 					items: [
 						{
 							label: 'REST API',
-							translations: { en: 'REST API' },
+							translations: { 'en-us': 'REST API' },
 							slug: 'reference/rest-api'
 						},
 						{
 							label: 'MCP ツール',
-							translations: { en: 'MCP tools' },
+							translations: { 'en-us': 'MCP tools' },
 							slug: 'reference/mcp-tools'
 						}
 					]
