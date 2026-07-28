@@ -44,6 +44,9 @@ function pickLocale(acceptLanguage: string | null): 'ja-JP' | 'en-US' {
 			}
 		}
 
+		// `q=0` explicitly rejects the tag — treat it as if it were absent.
+		if (q <= 0) continue;
+
 		if (tag === 'ja' || tag.startsWith('ja-')) {
 			bestJa = Math.max(bestJa, q);
 		} else if (tag === 'en' || tag.startsWith('en-')) {
