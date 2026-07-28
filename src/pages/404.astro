@@ -1,0 +1,67 @@
+---
+// Custom 404 for docs.d6e.ai.
+// Starlight's built-in 404 route breaks for multilingual sites without a
+// root locale (sidebar slug lookup has no locale context), so we disable it
+// and serve this page instead. Client-side picks ja-JP / en-US from
+// navigator.language; the Edge middleware handles Accept-Language for `/`.
+---
+
+<html lang="ja">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>404 | d6e Docs</title>
+		<script is:inline>
+			(function () {
+				var lang = (navigator.language || '').toLowerCase();
+				var locale = lang.indexOf('en') === 0 ? 'en-US' : 'ja-JP';
+				var home = '/' + locale + '/';
+				var message =
+					locale === 'en-US'
+						? 'Page not found. Redirecting to the docs home…'
+						: 'ページが見つかりません。ドキュメントのトップへ移動します…';
+				document.addEventListener('DOMContentLoaded', function () {
+					var el = document.getElementById('msg');
+					if (el) el.textContent = message;
+					var a = document.getElementById('home');
+					if (a) {
+						a.href = home;
+						a.textContent = locale === 'en-US' ? 'Go home' : 'トップへ戻る';
+					}
+					setTimeout(function () {
+						location.replace(home);
+					}, 1200);
+				});
+			})();
+		</script>
+		<style>
+			body {
+				font-family:
+					system-ui,
+					-apple-system,
+					'Segoe UI',
+					sans-serif;
+				display: grid;
+				place-items: center;
+				min-height: 100vh;
+				margin: 0;
+				background: #0f1419;
+				color: #e8eef5;
+			}
+			main {
+				text-align: center;
+				padding: 2rem;
+			}
+			a {
+				color: #7a9bc4;
+			}
+		</style>
+	</head>
+	<body>
+		<main>
+			<h1>404</h1>
+			<p id="msg">ページが見つかりません…</p>
+			<p><a id="home" href="/ja-JP/">トップへ戻る</a></p>
+		</main>
+	</body>
+</html>

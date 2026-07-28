@@ -1,0 +1,340 @@
+/* d6e Docs custom theme.
+ * Cool slate/blue accents aligned with www.d6e.ai (not purple).
+ * Splash home: wider hero copy, Japanese keep-all wrapping, atmospheric
+ * backdrop, and richer path / skills panels.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+:root {
+	--sl-color-accent-low: #e8eef5;
+	--sl-color-accent: #3b5b8a;
+	--sl-color-accent-high: #1e3a5f;
+	--sl-font: 'IBM Plex Sans', 'IBM Plex Sans JP', 'Hiragino Sans', 'Noto Sans JP', system-ui, sans-serif;
+	--sl-font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+	--d6e-ink: #0b1220;
+	--d6e-mist: #c5d4e8;
+	--d6e-steel: #7a9bc4;
+	--d6e-depth: #1a2838;
+}
+
+:root[data-theme='dark'] {
+	--sl-color-accent-low: #1a2838;
+	--sl-color-accent: #7a9bc4;
+	--sl-color-accent-high: #c5d4e8;
+}
+
+.site-title img {
+	height: 1.75rem;
+	width: auto;
+}
+
+.sl-markdown-content table {
+	font-size: 0.9rem;
+}
+
+.sl-markdown-content pre {
+	font-size: 0.85rem;
+}
+
+/* --- Splash hero: fix Japanese mid-word wraps + empty right column --- */
+
+[data-has-hero] .hero .copy > * {
+	max-width: min(38rem, 100%);
+	word-break: keep-all;
+	line-break: strict;
+	overflow-wrap: anywhere;
+}
+
+[data-has-hero] .hero h1 {
+	font-weight: 700;
+	letter-spacing: -0.03em;
+	line-height: 1.15;
+	text-wrap: balance;
+}
+
+[data-has-hero] .hero .tagline {
+	word-break: keep-all;
+	line-break: strict;
+	text-wrap: pretty;
+	max-width: min(36rem, 100%);
+	line-height: 1.55;
+}
+
+[data-has-hero] .hero .nowrap {
+	white-space: nowrap;
+}
+
+[data-has-hero] .hero > img,
+[data-has-hero] .hero > .hero-html {
+	filter: drop-shadow(0 18px 40px rgb(30 58 95 / 0.28));
+	animation: d6e-hero-rise 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+[data-has-hero] .hero .stack {
+	animation: d6e-hero-rise 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+[data-has-hero] .main-pane {
+	position: relative;
+}
+
+[data-has-hero] .main-pane::before {
+	content: '';
+	pointer-events: none;
+	position: absolute;
+	inset: 0 0 auto 0;
+	height: min(72vh, 42rem);
+	background:
+		radial-gradient(ellipse 70% 55% at 85% 20%, rgb(122 155 196 / 0.22), transparent 60%),
+		radial-gradient(ellipse 55% 45% at 10% 35%, rgb(59 91 138 / 0.16), transparent 55%),
+		linear-gradient(180deg, rgb(232 238 245 / 0.55), transparent 70%);
+	z-index: 0;
+}
+
+:root[data-theme='dark'][data-has-hero] .main-pane::before {
+	background:
+		radial-gradient(ellipse 70% 55% at 85% 18%, rgb(122 155 196 / 0.18), transparent 60%),
+		radial-gradient(ellipse 55% 45% at 8% 40%, rgb(30 58 95 / 0.45), transparent 55%),
+		linear-gradient(180deg, rgb(15 23 32 / 0.9), transparent 75%);
+}
+
+[data-has-hero] .content-panel:first-child {
+	position: relative;
+	z-index: 1;
+	border-bottom: 1px solid color-mix(in srgb, var(--d6e-steel) 28%, transparent);
+}
+
+/* --- Splash content panels --- */
+
+.splash-kicker {
+	display: inline-block;
+	margin: 0 0 0.75rem;
+	padding: 0.2rem 0.65rem;
+	border: 1px solid color-mix(in srgb, var(--d6e-steel) 45%, transparent);
+	border-radius: 999px;
+	font-size: 0.75rem;
+	font-weight: 600;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: var(--sl-color-accent-high);
+	background: color-mix(in srgb, var(--sl-color-accent-low) 70%, transparent);
+}
+
+.skills-panel {
+	margin: 1.5rem 0 2.5rem;
+	padding: 1.35rem 1.4rem 1.2rem;
+	border: 1px solid color-mix(in srgb, var(--d6e-steel) 40%, transparent);
+	border-radius: 1rem;
+	background:
+		linear-gradient(145deg, color-mix(in srgb, var(--sl-color-accent-low) 80%, transparent), transparent 65%),
+		color-mix(in srgb, var(--sl-color-bg) 88%, var(--d6e-depth));
+	box-shadow: 0 12px 36px rgb(15 23 32 / 0.08);
+	animation: d6e-hero-rise 900ms 120ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+:root[data-theme='dark'] .skills-panel {
+	box-shadow: 0 16px 40px rgb(0 0 0 / 0.28);
+}
+
+.skills-panel h2 {
+	margin-top: 0 !important;
+}
+
+.skills-panel p {
+	margin-bottom: 0.85rem;
+}
+
+.skills-panel pre {
+	margin-bottom: 0.85rem !important;
+	border-radius: 0.75rem !important;
+}
+
+.path-grid {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 0.85rem;
+	margin: 1rem 0 2.25rem;
+}
+
+@media (min-width: 48rem) {
+	.path-grid {
+		grid-template-columns: 1fr 1fr;
+	}
+}
+
+.path-card {
+	display: block;
+	padding: 1.1rem 1.15rem 1.05rem;
+	border: 1px solid color-mix(in srgb, var(--d6e-steel) 32%, transparent);
+	border-radius: 0.9rem;
+	text-decoration: none !important;
+	color: inherit;
+	background: color-mix(in srgb, var(--sl-color-bg) 92%, var(--sl-color-accent-low));
+	transition:
+		border-color 180ms ease,
+		transform 180ms ease,
+		box-shadow 180ms ease,
+		background 180ms ease;
+}
+
+.path-card:hover {
+	border-color: color-mix(in srgb, var(--d6e-steel) 70%, transparent);
+	transform: translateY(-2px);
+	box-shadow: 0 10px 28px rgb(30 58 95 / 0.12);
+	background: color-mix(in srgb, var(--sl-color-accent-low) 55%, var(--sl-color-bg));
+}
+
+.path-card:focus-visible {
+	outline: 2px solid var(--sl-color-accent);
+	outline-offset: 2px;
+}
+
+.path-card .path-label {
+	display: block;
+	margin-bottom: 0.35rem;
+	font-size: 0.72rem;
+	font-weight: 600;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+	color: var(--sl-color-accent-high);
+}
+
+.path-card .path-title {
+	display: block;
+	margin-bottom: 0.35rem;
+	font-size: 1.05rem;
+	font-weight: 600;
+	color: var(--sl-color-white);
+	word-break: keep-all;
+	line-break: strict;
+}
+
+.path-card .path-desc {
+	display: block;
+	font-size: 0.92rem;
+	line-height: 1.5;
+	color: var(--sl-color-gray-2);
+	word-break: keep-all;
+	line-break: strict;
+}
+
+.build-row {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 0.85rem;
+	margin: 1rem 0 2rem;
+}
+
+@media (min-width: 50rem) {
+	.build-row {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+
+.build-item {
+	padding: 1.15rem 1.1rem 1.05rem;
+	border-top: 2px solid var(--sl-color-accent);
+	background: color-mix(in srgb, var(--sl-color-accent-low) 35%, transparent);
+	word-break: keep-all;
+	line-break: strict;
+}
+
+.build-item strong {
+	display: block;
+	margin-bottom: 0.45rem;
+	font-size: 1.05rem;
+}
+
+.build-item p {
+	margin: 0 0 0.65rem;
+	color: var(--sl-color-gray-2);
+	font-size: 0.92rem;
+	line-height: 1.5;
+}
+
+.build-item a {
+	font-weight: 600;
+	font-size: 0.9rem;
+}
+
+.splash-footer-note {
+	margin-top: 2rem;
+	padding-top: 1.25rem;
+	border-top: 1px solid color-mix(in srgb, var(--d6e-steel) 28%, transparent);
+	font-size: 0.9rem;
+	color: var(--sl-color-gray-2);
+	word-break: keep-all;
+	line-break: strict;
+}
+
+@keyframes d6e-hero-rise {
+	from {
+		opacity: 0;
+		transform: translateY(12px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	[data-has-hero] .hero > img,
+	[data-has-hero] .hero > .hero-html,
+	[data-has-hero] .hero .stack,
+	.skills-panel {
+		animation: none;
+	}
+
+	.path-card:hover {
+		transform: none;
+	}
+}
+
+/* --- Mermaid diagrams + ASCII fallback details --- */
+
+.sl-markdown-content .mermaid {
+	margin: 1.25rem 0 1.5rem;
+	padding: 1rem;
+	border: 1px solid color-mix(in srgb, var(--d6e-steel) 32%, transparent);
+	border-radius: 0.9rem;
+	background: color-mix(in srgb, var(--sl-color-accent-low) 40%, var(--sl-color-bg));
+	overflow-x: auto;
+}
+
+.sl-markdown-content details {
+	margin: 0 0 1.75rem;
+	padding: 0.65rem 0.9rem 0.75rem;
+	border: 1px dashed color-mix(in srgb, var(--d6e-steel) 40%, transparent);
+	border-radius: 0.75rem;
+	background: color-mix(in srgb, var(--sl-color-bg) 92%, var(--d6e-depth));
+}
+
+.sl-markdown-content details > summary {
+	cursor: pointer;
+	font-weight: 600;
+	font-size: 0.92rem;
+	color: var(--sl-color-accent-high);
+	list-style: none;
+}
+
+.sl-markdown-content details > summary::-webkit-details-marker {
+	display: none;
+}
+
+.sl-markdown-content details > summary::before {
+	content: '▸ ';
+	display: inline-block;
+	transition: transform 160ms ease;
+}
+
+.sl-markdown-content details[open] > summary::before {
+	transform: rotate(90deg);
+}
+
+.sl-markdown-content details pre {
+	margin-top: 0.75rem;
+	font-size: 0.78rem;
+	line-height: 1.35;
+}

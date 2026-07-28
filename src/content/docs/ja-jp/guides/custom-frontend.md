@@ -1,0 +1,56 @@
+---
+title: カスタムフロントエンド
+description: OAuth2 でログインし公開 API を呼ぶ、独立した普通の Web アプリを作る。
+---
+
+カスタムフロントエンドとは、中央サイトでユーザーをログインさせたうえで、**特定の d6e インスタンス上の特定のワークスペース**を公開 HTTP API — コンソールと同じ API — 経由で操作する、独立してデプロイされた Web アプリです。
+
+特権的な連携は存在しません。セキュリティ境界はインスタンスのままです。
+
+## スキルを入れる（推奨: 全部）
+
+カスタム FE だけを入れるケースは稀です。依存するテーブル・プロンプト・WF・STF は Plugin / Docker STF 側の話になることがほとんどなので、**3 リポジトリすべて**を入れてください。設計や質問をエージェントにさせる場合も同様です。
+
+```bash
+npx skills add d6e-ai/d6e-plugin-skills --skill '*' -y
+npx skills add d6e-ai/d6e-docker-stf-skills --skill '*' -y
+npx skills add d6e-ai/d6e-custom-frontend-skills --skill '*' -y
+```
+
+詳細は [Agent Skills の入れ方](/ja-jp/guides/agent-skills/) を参照してください。
+
+フロントエンド 3 スキルだけの最小セットが必要なときは次です（通常は非推奨）:
+
+```bash
+npx skills add d6e-ai/d6e-custom-frontend-skills --skill '*' -y
+```
+
+リポジトリ: [d6e-ai/d6e-custom-frontend-skills](https://github.com/d6e-ai/d6e-custom-frontend-skills)  
+リファレンス実装（AI 経理）も同リポジトリに含まれます。
+
+## フロントエンド 3 スキルの役割
+
+| スキル | 担当 |
+|---|---|
+| `d6e-auth-integration` | OAuth2（認可コード）・セッション Cookie・リフレッシュ・ワークスペース allow-list |
+| `d6e-workspace-api-client` | サーバ側プロキシ（files / SQL / workflows / async jobs 等） |
+| `d6e-prompt-driven-ui` | LLM 出力の `kind` JSON・Zod パース・改訂フロー・UI 契約 |
+
+## 認証の要点
+
+1. ブラウザを `https://www.d6e.ai/auth/login` へリダイレクト
+2. 認可コードを**インスタンス**の `POST /api/v1/auth/token` へ POST
+3. 以後は Bearer トークンで `/api/v1/*` を呼ぶ
+
+フロントエンドは **client secret を持ちません**。本番の callback URL は d6e-auth に登録します（localhost は不要）。詳細は [アーキテクチャ](/ja-jp/getting-started/architecture/) を参照。
+
+## 概念ドキュメント（原典）
+
+- [frontend-and-instance.ja.md](https://github.com/d6e-ai/d6e-custom-frontend-skills/blob/main/docs/frontend-and-instance.ja.md) — 3 者関係
+- [architecture.md](https://github.com/d6e-ai/d6e-custom-frontend-skills/blob/main/docs/architecture.md) — リファレンスアプリのシーケンス
+- [d6e-api-integration.md](https://github.com/d6e-ai/d6e-custom-frontend-skills/blob/main/docs/d6e-api-integration.md) — request/response 詳細
+- [workspace-setup.md](https://github.com/d6e-ai/d6e-custom-frontend-skills/blob/main/docs/workspace-setup.md) — 依存ワークスペースの構築
+
+## Plugin / Docker STF との組み合わせ
+
+フロントエンドが依存するテーブル・プロンプト・WF・STF を Plugin としてパッケージ化すると、新しいワークスペースを再現可能に用意できます。重い処理や外部ネットワークが必要なら Docker STF を Plugin に含めます。切り分けは [開発パスの選び方](/ja-jp/getting-started/choosing-a-path/) を参照してください。

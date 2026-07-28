@@ -1,0 +1,91 @@
+---
+title: 開発者ドキュメント
+description: d6e はセルフホスト可能な AI ワークプラットフォームです。公開 API・MCP・Plugin・Docker STF・カスタムフロントエンドの全体像とリファレンス。
+template: splash
+hero:
+  title: すべてが、<span class="nowrap">公開&nbsp;API</span>。
+  tagline: <span class="nowrap">Plugin・Docker&nbsp;STF・カスタムフロントエンド</span>まで。<span class="nowrap">既存システムと疎結合</span>な <span class="nowrap">AI&nbsp;ワークプラットフォーム</span>の開発者向けドキュメント。
+  image:
+    dark: ../../../assets/hero-platform.svg
+    light: ../../../assets/hero-platform-light.svg
+    alt: Public API を中心に MCP・OAuth・Plugin・Docker STF・カスタムフロントエンドが接続する図
+  actions:
+    - text: d6e とは
+      link: /ja-jp/getting-started/what-is-d6e/
+      icon: right-arrow
+      variant: primary
+    - text: Skills を入れる
+      link: /ja-jp/guides/agent-skills/
+      icon: seti:config
+      variant: minimal
+    - text: API リファレンス
+      link: /ja-jp/reference/rest-api/
+      icon: document
+      variant: minimal
+---
+
+<div class="skills-panel">
+  <span class="splash-kicker">Start here</span>
+
+  ## AI エージェント向け（まずこれ）
+
+  設計や質問の前に、**3 リポジトリのスキルをすべて**入れてください。カスタム FE だけでもワークスペース側の知識が必要になることがほとんどです。
+
+```bash
+npx skills add d6e-ai/d6e-plugin-skills --skill '*' -y
+npx skills add d6e-ai/d6e-docker-stf-skills --skill '*' -y
+npx skills add d6e-ai/d6e-custom-frontend-skills --skill '*' -y
+```
+
+  パス別の最小セットは [Agent Skills の入れ方](/ja-jp/guides/agent-skills/) を参照してください。
+</div>
+
+## どこから読むか
+
+<div class="path-grid">
+  <a class="path-card" href="/ja-jp/guides/agent-skills/">
+    <span class="path-label">01 · Skills</span>
+    <span class="path-title">Agent Skills を入れる</span>
+    <span class="path-desc">Cursor / Claude Code / Codex。設計・質問・カスタム FE では全スキル推奨</span>
+  </a>
+  <a class="path-card" href="/ja-jp/getting-started/what-is-d6e/">
+    <span class="path-label">02 · Overview</span>
+    <span class="path-title">全体像をつかむ</span>
+    <span class="path-desc">インスタンス・ワークスペース・d6e-auth・公開 API の関係</span>
+  </a>
+  <a class="path-card" href="/ja-jp/guides/local-ai-development/">
+    <span class="path-label">03 · Local AI</span>
+    <span class="path-title">ローカル AI で開発する</span>
+    <span class="path-desc">Cursor / Claude Code / Codex をインスタンス MCP に接続</span>
+  </a>
+  <a class="path-card" href="/ja-jp/reference/rest-api/">
+    <span class="path-label">04 · Reference</span>
+    <span class="path-title">REST API / MCP</span>
+    <span class="path-desc">認証・SQL・ファイル・STF・ワークフロー・約 96 ツール</span>
+  </a>
+</div>
+
+## 作れるもの
+
+<div class="build-row">
+  <div class="build-item">
+    <strong>Plugin</strong>
+    <p>プロンプト・STF・ワークフローを <code>template.yaml</code> にパッケージ化し、URL または Marketplace からインストール。</p>
+    <a href="/ja-jp/guides/plugins/">ガイド →</a>
+  </div>
+  <div class="build-item">
+    <strong>Docker STF</strong>
+    <p>任意言語のコンテナ。stdin/stdout の JSON 契約だけで動く可搬なビジネスロジック。</p>
+    <a href="/ja-jp/guides/docker-stf/">ガイド →</a>
+  </div>
+  <div class="build-item">
+    <strong>カスタムフロントエンド</strong>
+    <p>OAuth2 でログインし公開 API を呼ぶ、独立した普通の Web アプリ。多くは Plugin / Docker STF も併用。</p>
+    <a href="/ja-jp/guides/custom-frontend/">ガイド →</a>
+  </div>
+</div>
+
+<p class="splash-footer-note">
+  このサイトの全文は <a href="/llms.txt"><code>/llms.txt</code></a> から取得できます。設計思想の raw Markdown は
+  <a href="https://www.d6e.ai/docs/design-philosophy.ja.md">www.d6e.ai/docs/design-philosophy.ja.md</a> でも配信しています。
+</p>

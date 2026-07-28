@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 420" fill="none" role="img" aria-hidden="true">
+  <defs>
+    <linearGradient id="planeL" x1="40" y1="40" x2="440" y2="380" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#3b5b8a" stop-opacity="0.14"/>
+      <stop offset="1" stop-color="#e8eef5" stop-opacity="0.9"/>
+    </linearGradient>
+    <linearGradient id="edgeL" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#1e3a5f" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#7a9bc4" stop-opacity="0.35"/>
+    </linearGradient>
+  </defs>
+  <circle cx="360" cy="90" r="78" fill="#3b5b8a" fill-opacity="0.08"/>
+  <circle cx="110" cy="320" r="96" fill="#7a9bc4" fill-opacity="0.12"/>
+  <rect x="72" y="58" width="336" height="220" rx="18" fill="url(#planeL)" stroke="url(#edgeL)" stroke-width="1.5"/>
+  <rect x="96" y="98" width="288" height="188" rx="14" fill="#ffffff" fill-opacity="0.72" stroke="#3b5b8a" stroke-opacity="0.35" stroke-width="1.25"/>
+  <rect x="120" y="138" width="240" height="156" rx="12" fill="#f4f7fb" fill-opacity="0.95" stroke="#1e3a5f" stroke-opacity="0.4" stroke-width="1.25"/>
+  <rect x="168" y="178" width="144" height="52" rx="10" fill="#3b5b8a"/>
+  <text x="240" y="210" text-anchor="middle" font-family="IBM Plex Sans, ui-sans-serif, sans-serif" font-size="18" font-weight="600" fill="#f4f7fb">Public API</text>
+  <g font-family="IBM Plex Sans, ui-sans-serif, sans-serif" font-size="13" font-weight="500" fill="#1e3a5f">
+    <rect x="40" y="168" width="88" height="36" rx="8" fill="#ffffff" stroke="#3b5b8a" stroke-opacity="0.45"/>
+    <text x="84" y="191" text-anchor="middle">MCP</text>
+    <rect x="352" y="168" width="88" height="36" rx="8" fill="#ffffff" stroke="#3b5b8a" stroke-opacity="0.45"/>
+    <text x="396" y="191" text-anchor="middle">OAuth</text>
+    <rect x="78" y="300" width="96" height="36" rx="8" fill="#ffffff" stroke="#3b5b8a" stroke-opacity="0.45"/>
+    <text x="126" y="323" text-anchor="middle">Plugin</text>
+    <rect x="192" y="320" width="96" height="36" rx="8" fill="#ffffff" stroke="#3b5b8a" stroke-opacity="0.45"/>
+    <text x="240" y="343" text-anchor="middle">Docker STF</text>
+    <rect x="306" y="300" width="96" height="36" rx="8" fill="#ffffff" stroke="#3b5b8a" stroke-opacity="0.45"/>
+    <text x="354" y="323" text-anchor="middle">Custom FE</text>
+  </g>
+  <g stroke="#3b5b8a" stroke-opacity="0.45" stroke-width="1.25">
+    <path d="M128 186 H168"/>
+    <path d="M312 186 H352"/>
+    <path d="M210 230 V300"/>
+    <path d="M240 230 V320"/>
+    <path d="M270 230 V300"/>
+  </g>
+</svg>

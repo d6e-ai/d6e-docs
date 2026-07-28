@@ -1,0 +1,56 @@
+---
+title: Custom frontend
+description: Build an ordinary web app that logs users in via OAuth2 and calls the public API.
+---
+
+A custom frontend is an independently deployed web app that logs users in via the central account site and then operates on **a specific workspace on a specific d6e instance** through the public HTTP API — the same API the console uses.
+
+There is no privileged integration. The security boundary stays on the instance.
+
+## Install skills (recommended: everything)
+
+Installing frontend skills alone is rarely enough. Dependent tables, prompts, workflows, and STFs usually live on the Plugin / Docker STF side — so install **all three repositories**. The same applies when asking an agent to design or answer questions.
+
+```bash
+npx skills add d6e-ai/d6e-plugin-skills --skill '*' -y
+npx skills add d6e-ai/d6e-docker-stf-skills --skill '*' -y
+npx skills add d6e-ai/d6e-custom-frontend-skills --skill '*' -y
+```
+
+See [Installing Agent Skills](/en-us/guides/agent-skills/) for details.
+
+Frontend-only minimal set (usually not recommended):
+
+```bash
+npx skills add d6e-ai/d6e-custom-frontend-skills --skill '*' -y
+```
+
+Repository: [d6e-ai/d6e-custom-frontend-skills](https://github.com/d6e-ai/d6e-custom-frontend-skills)  
+A reference implementation (AI bookkeeping) ships in the same repo.
+
+## What the three frontend skills cover
+
+| Skill | Responsibility |
+|---|---|
+| `d6e-auth-integration` | OAuth2 (authorization code), session cookies, refresh, workspace allow-list |
+| `d6e-workspace-api-client` | Server-side proxy (files / SQL / workflows / async jobs, …) |
+| `d6e-prompt-driven-ui` | LLM `kind` JSON output, Zod parsing, revision flow, UI contracts |
+
+## Auth essentials
+
+1. Redirect the browser to `https://www.d6e.ai/auth/login`
+2. POST the authorization code to the **instance** `POST /api/v1/auth/token`
+3. Call `/api/v1/*` with the Bearer token afterwards
+
+Frontends **never hold a client secret**. Register production callback URLs in d6e-auth (localhost is exempt). See [Architecture](/en-us/getting-started/architecture/).
+
+## Conceptual docs (canonical)
+
+- [frontend-and-instance.md](https://github.com/d6e-ai/d6e-custom-frontend-skills/blob/main/docs/frontend-and-instance.md) — the three actors
+- [architecture.md](https://github.com/d6e-ai/d6e-custom-frontend-skills/blob/main/docs/architecture.md) — reference app sequences
+- [d6e-api-integration.md](https://github.com/d6e-ai/d6e-custom-frontend-skills/blob/main/docs/d6e-api-integration.md) — request/response shapes
+- [workspace-setup.md](https://github.com/d6e-ai/d6e-custom-frontend-skills/blob/main/docs/workspace-setup.md) — preparing the dependent workspace
+
+## Combining with Plugin / Docker STF
+
+Package the tables, prompts, workflows, and STFs your frontend depends on as a Plugin so new workspaces can be provisioned reproducibly. Include Docker STFs in the Plugin when you need heavy compute or external network access. See [Choosing a path](/en-us/getting-started/choosing-a-path/).
