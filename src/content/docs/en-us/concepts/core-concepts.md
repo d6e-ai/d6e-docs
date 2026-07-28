@@ -216,6 +216,24 @@ Vector embeddings for semantic search. The instance owns the model path (Gemini-
 | **File** | Uploaded storage files | **Async** (poll status) |
 | **Table row** | Row JSON across tables | **Async** (poll status) |
 
+```mermaid
+flowchart TB
+  update["Upload / row update"]
+  req["embed request"]
+  sync["sync · column"]
+  async["async · file / table<br/>pending → processing → completed"]
+  search["Vector similarity search"]
+
+  update --> req
+  req --> sync
+  req --> async
+  sync --> search
+  async --> search
+```
+
+<details>
+<summary>Text version (ASCII)</summary>
+
 ```
 Upload / row update
         │
@@ -229,6 +247,8 @@ Upload / row update
         ▼
    Vector similarity search
 ```
+
+</details>
 
 Do not search file/table embeddings until status is `completed`. For columns, use the generate response counts to confirm completion.
 

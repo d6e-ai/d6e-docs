@@ -7,6 +7,38 @@ d6e の境界はシンプルです。**ワークスペースのデータと AI �
 
 ## 信頼境界
 
+```mermaid
+flowchart TB
+  subgraph you["あなたが所有"]
+    client["カスタム FE / スクリプト / ローカル AI"]
+    creds["Cookie · API キー · ユーザートークン<br/>client secret は持たない"]
+  end
+
+  subgraph inst["インスタンス（自社インフラ）"]
+    proxy["リバースプロキシ（1 オリジン）"]
+    rust["/api/v1/* → Rust API"]
+    consoleApi["/api/* → コンソール API"]
+    mcp["/mcp → MCP ≈96 tools"]
+    ui["/* → コンソール UI"]
+    data["PostgreSQL · ファイル · シークレット<br/>ポリシー · 監査 · メンバーシップ"]
+    proxy --> rust
+    proxy --> consoleApi
+    proxy --> mcp
+    proxy --> ui
+    rust --> data
+  end
+
+  subgraph central["中央サイト www.d6e.ai"]
+    auth["アカウント · ログイン · OAuth / redirect URI<br/>ワークスペースの中身は見ない"]
+  end
+
+  you -->|"HTTPS"| inst
+  inst -->|"認証仲介のみ"| central
+```
+
+<details>
+<summary>テキスト版（ASCII）</summary>
+
 ```
 ┌─ あなたが所有 ──────────────────────────────────────────────┐
 │  カスタム FE / スクリプト / ローカル AI エージェント         │
@@ -30,6 +62,8 @@ d6e の境界はシンプルです。**ワークスペースのデータと AI �
 │  ワークスペースの中身は見ない                                │
 └─────────────────────────────────────────────────────────────┘
 ```
+
+</details>
 
 ## インスタンスの 2 つの API 面
 

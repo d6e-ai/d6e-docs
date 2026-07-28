@@ -7,6 +7,18 @@ Connect a local AI coding agent to a **running d6e instance** and develop/test P
 
 The core idea: **everything the hosted AI agent can do is available as a public HTTP API / MCP**. Your laptop gets the same ~96 `d6e_*` tools the built-in chat uses.
 
+```mermaid
+flowchart LR
+  agent["Local AI agent<br/>Cursor / Claude Code / Codex"]
+  inst["d6e instance<br/>MCP :8081/mcp → Rust /api/v1/* → PostgreSQL"]
+
+  agent -->|"MCP"| inst
+  agent -->|"REST"| inst
+```
+
+<details>
+<summary>Text version (ASCII)</summary>
+
 ```
 ┌────────────────────┐        ┌────────────────────────────────────┐
 │ Local AI agent     │  MCP   │ d6e instance                       │
@@ -14,6 +26,8 @@ The core idea: **everything the hosted AI agent can do is available as a public 
 │  Code / Codex)     │  REST  │                 →  PostgreSQL      │
 └────────────────────┘───────▶└────────────────────────────────────┘
 ```
+
+</details>
 
 This page is a summary. Full steps, differences, and troubleshooting live in the source guide:
 

@@ -216,6 +216,24 @@ X-Workspace-ID: <workspace-uuid>
 | **File** | アップロード済みファイル | **非同期**（status をポーリング） |
 | **Table row** | テーブル行の JSON 表現 | **非同期**（status をポーリング） |
 
+```mermaid
+flowchart TB
+  update["アップロード / 行更新"]
+  req["embed リクエスト"]
+  sync["sync · column"]
+  async["async · file / table<br/>pending → processing → completed"]
+  search["ベクトル検索（類似度）"]
+
+  update --> req
+  req --> sync
+  req --> async
+  sync --> search
+  async --> search
+```
+
+<details>
+<summary>テキスト版（ASCII）</summary>
+
 ```
 アップロード / 行更新
         │
@@ -229,6 +247,8 @@ X-Workspace-ID: <workspace-uuid>
         ▼
    ベクトル検索（類似度）
 ```
+
+</details>
 
 ファイル / テーブルは `completed` になるまで検索しないでください。列埋め込みは generate レスポンスの件数で完了を確認します。
 

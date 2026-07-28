@@ -7,6 +7,19 @@ d6e is a **self-hostable AI work platform**. You deploy an instance into your ow
 
 ## Three actors
 
+```mermaid
+flowchart LR
+  code["Your code<br/>Local AI · scripts · custom FE"]
+  inst["d6e instance<br/>${D6E_BASE_URL}<br/>Console · /api/v1/* · MCP · DB"]
+  central["Central account site<br/>www.d6e.ai<br/>Login · OAuth · billing"]
+
+  code -->|"MCP / REST / OAuth"| inst
+  central -->|"Auth brokerage"| inst
+```
+
+<details>
+<summary>Text version (ASCII)</summary>
+
 ```
 ┌────────────────────────────────┐
 │ Your code                      │
@@ -26,6 +39,8 @@ d6e is a **self-hostable AI work platform**. You deploy an instance into your ow
 │ · STFs, workflows, SaaS        │
 └────────────────────────────────┘
 ```
+
+</details>
 
 | Actor | Role | Where data lives |
 |---|---|---|

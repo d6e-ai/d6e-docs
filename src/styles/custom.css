@@ -291,3 +291,50 @@
 		transform: none;
 	}
 }
+
+/* --- Mermaid diagrams + ASCII fallback details --- */
+
+.sl-markdown-content .mermaid {
+	margin: 1.25rem 0 1.5rem;
+	padding: 1rem;
+	border: 1px solid color-mix(in srgb, var(--d6e-steel) 32%, transparent);
+	border-radius: 0.9rem;
+	background: color-mix(in srgb, var(--sl-color-accent-low) 40%, var(--sl-color-bg));
+	overflow-x: auto;
+}
+
+.sl-markdown-content details {
+	margin: 0 0 1.75rem;
+	padding: 0.65rem 0.9rem 0.75rem;
+	border: 1px dashed color-mix(in srgb, var(--d6e-steel) 40%, transparent);
+	border-radius: 0.75rem;
+	background: color-mix(in srgb, var(--sl-color-bg) 92%, var(--d6e-depth));
+}
+
+.sl-markdown-content details > summary {
+	cursor: pointer;
+	font-weight: 600;
+	font-size: 0.92rem;
+	color: var(--sl-color-accent-high);
+	list-style: none;
+}
+
+.sl-markdown-content details > summary::-webkit-details-marker {
+	display: none;
+}
+
+.sl-markdown-content details > summary::before {
+	content: '▸ ';
+	display: inline-block;
+	transition: transform 160ms ease;
+}
+
+.sl-markdown-content details[open] > summary::before {
+	transform: rotate(90deg);
+}
+
+.sl-markdown-content details pre {
+	margin-top: 0.75rem;
+	font-size: 0.78rem;
+	line-height: 1.35;
+}

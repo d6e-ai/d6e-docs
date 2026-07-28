@@ -7,11 +7,17 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import starlightLlmsTxt from 'starlight-llms-txt';
+import mermaid from 'astro-mermaid';
 
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://docs.d6e.ai',
 	integrations: [
+		// Mermaid must be registered before Starlight.
+		mermaid({
+			theme: 'neutral',
+			autoTheme: true
+		}),
 		starlight({
 			title: 'd6e Docs',
 			favicon: '/favicon.svg',

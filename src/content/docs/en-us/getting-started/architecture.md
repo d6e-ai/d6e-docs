@@ -7,6 +7,38 @@ d6e's boundaries are simple: **workspace data and AI execution live on the insta
 
 ## Trust boundaries
 
+```mermaid
+flowchart TB
+  subgraph you["You own"]
+    client["Custom FE / scripts / local AI agents"]
+    creds["Cookies · API keys · user tokens<br/>No client secret"]
+  end
+
+  subgraph inst["Instance (your infrastructure)"]
+    proxy["Reverse proxy (one origin)"]
+    rust["/api/v1/* → Rust API"]
+    consoleApi["/api/* → Console API"]
+    mcp["/mcp → MCP ~96 tools"]
+    ui["/* → Console UI"]
+    data["PostgreSQL · files · secrets<br/>Policy · audit · membership"]
+    proxy --> rust
+    proxy --> consoleApi
+    proxy --> mcp
+    proxy --> ui
+    rust --> data
+  end
+
+  subgraph central["Central site www.d6e.ai"]
+    auth["Accounts · login · OAuth / redirect URIs<br/>Never sees workspace contents"]
+  end
+
+  you -->|"HTTPS"| inst
+  inst -->|"Auth brokerage only"| central
+```
+
+<details>
+<summary>Text version (ASCII)</summary>
+
 ```
 ┌─ You own ───────────────────────────────────────────────────┐
 │  Custom FE / scripts / local AI agents                      │
@@ -30,6 +62,8 @@ d6e's boundaries are simple: **workspace data and AI execution live on the insta
 │  Never sees workspace contents                              │
 └─────────────────────────────────────────────────────────────┘
 ```
+
+</details>
 
 ## Two API surfaces on one origin
 

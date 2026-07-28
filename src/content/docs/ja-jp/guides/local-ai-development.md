@@ -7,6 +7,18 @@ description: Cursor / Claude Code / Codex をインスタンスの MCP サーバ
 
 核心: **d6e の AI エージェントができることはすべて公開 HTTP API / MCP として提供されている**。内蔵チャットと同じ約 96 個の `d6e_*` ツールを、手元のエージェントから使えます。
 
+```mermaid
+flowchart LR
+  agent["ローカル AI<br/>Cursor / Claude Code / Codex"]
+  inst["d6e インスタンス<br/>MCP :8081/mcp → Rust /api/v1/* → PostgreSQL"]
+
+  agent -->|"MCP"| inst
+  agent -->|"REST"| inst
+```
+
+<details>
+<summary>テキスト版（ASCII）</summary>
+
 ```
 ┌────────────────────┐        ┌────────────────────────────────────┐
 │ ローカル AI         │  MCP   │ d6e インスタンス                   │
@@ -14,6 +26,8 @@ description: Cursor / Claude Code / Codex をインスタンスの MCP サーバ
 │  Code / Codex)     │  REST  │                 →  PostgreSQL     │
 └────────────────────┘───────▶└────────────────────────────────────┘
 ```
+
+</details>
 
 このページは要約です。手順の全文・差分・トラブルシュートは原典を参照してください。
 
