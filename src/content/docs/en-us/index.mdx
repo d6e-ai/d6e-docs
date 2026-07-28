@@ -1,9 +1,14 @@
 ---
-title: d6e Developer Documentation
+title: Developer docs
 description: d6e is a self-hostable AI work platform. Architecture, public API, MCP, Plugins, Docker STFs, and custom frontends.
 template: splash
 hero:
-  tagline: Everything is a public API. A loosely coupled AI work platform.
+  title: Everything is a <span class="nowrap">public&nbsp;API</span>.
+  tagline: Plugins, <span class="nowrap">Docker&nbsp;STFs</span>, and custom frontends. Developer docs for a <span class="nowrap">loosely coupled</span> <span class="nowrap">AI&nbsp;work platform</span>.
+  image:
+    dark: ../../../assets/hero-platform.svg
+    light: ../../../assets/hero-platform-light.svg
+    alt: Diagram of Public API surrounded by MCP, OAuth, Plugin, Docker STF, and custom frontend
   actions:
     - text: What is d6e?
       link: /en-us/getting-started/what-is-d6e/
@@ -13,55 +18,18 @@ hero:
       link: /en-us/guides/agent-skills/
       icon: seti:config
       variant: minimal
+    - text: API reference
+      link: /en-us/reference/rest-api/
+      icon: document
+      variant: minimal
 ---
 
-import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
+<div class="skills-panel">
+  <span class="splash-kicker">Start here</span>
 
-## Where to start
+  ## For AI agents (start here)
 
-<CardGrid>
-  <LinkCard
-    title="Install Agent Skills"
-    href="/en-us/guides/agent-skills/"
-    description="For Cursor / Claude Code / Codex. Install all skills for design, Q&A, and custom FEs"
-  />
-  <LinkCard
-    title="Get the big picture"
-    href="/en-us/getting-started/what-is-d6e/"
-    description="Instances, workspaces, d6e-auth, and the public API"
-  />
-  <LinkCard
-    title="Develop with a local AI agent"
-    href="/en-us/guides/local-ai-development/"
-    description="Connect Cursor / Claude Code / Codex to the instance MCP"
-  />
-  <LinkCard
-    title="REST API / MCP reference"
-    href="/en-us/reference/rest-api/"
-    description="Auth, SQL, files, STFs, workflows, ~96 tools"
-  />
-</CardGrid>
-
-## What you can build
-
-<CardGrid>
-  <Card title="Plugin" icon="puzzle">
-    Package prompts, STFs, and workflows in `template.yaml` and install from URL or the Marketplace.
-    [Guide →](/en-us/guides/plugins/)
-  </Card>
-  <Card title="Docker STF" icon="seti:docker">
-    Any-language containers with a stdin/stdout JSON contract — portable business logic.
-    [Guide →](/en-us/guides/docker-stf/)
-  </Card>
-  <Card title="Custom frontend" icon="laptop">
-    An ordinary web app that logs users in via OAuth2 and calls the public API. Usually combined with Plugin / Docker STF.
-    [Guide →](/en-us/guides/custom-frontend/)
-  </Card>
-</CardGrid>
-
-## For AI agents (start here)
-
-Before design or Q&A sessions, install **all skills from all three repositories**. Even a custom-frontend-only project usually needs workspace-side knowledge.
+  Before design or Q&A, install **all skills from all three repositories**. Even a custom-frontend-only project usually needs workspace-side knowledge.
 
 ```bash
 npx skills add d6e-ai/d6e-plugin-skills --skill '*' -y
@@ -69,6 +37,55 @@ npx skills add d6e-ai/d6e-docker-stf-skills --skill '*' -y
 npx skills add d6e-ai/d6e-custom-frontend-skills --skill '*' -y
 ```
 
-Details and path-specific minimal sets: [Installing Agent Skills](/en-us/guides/agent-skills/).
+  Path-specific minimal sets: [Installing Agent Skills](/en-us/guides/agent-skills/).
+</div>
 
-The full site text is available at [`/llms.txt`](/llms.txt). Raw design-philosophy Markdown is also served from [www.d6e.ai/docs/design-philosophy.md](https://www.d6e.ai/docs/design-philosophy.md).
+## Where to start
+
+<div class="path-grid">
+  <a class="path-card" href="/en-us/guides/agent-skills/">
+    <span class="path-label">01 · Skills</span>
+    <span class="path-title">Install Agent Skills</span>
+    <span class="path-desc">Cursor / Claude Code / Codex. Install all skills for design, Q&A, and custom FEs</span>
+  </a>
+  <a class="path-card" href="/en-us/getting-started/what-is-d6e/">
+    <span class="path-label">02 · Overview</span>
+    <span class="path-title">Get the big picture</span>
+    <span class="path-desc">Instances, workspaces, d6e-auth, and the public API</span>
+  </a>
+  <a class="path-card" href="/en-us/guides/local-ai-development/">
+    <span class="path-label">03 · Local AI</span>
+    <span class="path-title">Develop with a local AI agent</span>
+    <span class="path-desc">Connect Cursor / Claude Code / Codex to the instance MCP</span>
+  </a>
+  <a class="path-card" href="/en-us/reference/rest-api/">
+    <span class="path-label">04 · Reference</span>
+    <span class="path-title">REST API / MCP</span>
+    <span class="path-desc">Auth, SQL, files, STFs, workflows, ~96 tools</span>
+  </a>
+</div>
+
+## What you can build
+
+<div class="build-row">
+  <div class="build-item">
+    <strong>Plugin</strong>
+    <p>Package prompts, STFs, and workflows in <code>template.yaml</code> and install from URL or the Marketplace.</p>
+    <a href="/en-us/guides/plugins/">Guide →</a>
+  </div>
+  <div class="build-item">
+    <strong>Docker STF</strong>
+    <p>Any-language containers with a stdin/stdout JSON contract — portable business logic.</p>
+    <a href="/en-us/guides/docker-stf/">Guide →</a>
+  </div>
+  <div class="build-item">
+    <strong>Custom frontend</strong>
+    <p>An ordinary web app that logs users in via OAuth2 and calls the public API. Usually combined with Plugin / Docker STF.</p>
+    <a href="/en-us/guides/custom-frontend/">Guide →</a>
+  </div>
+</div>
+
+<p class="splash-footer-note">
+  Full site text is at <a href="/llms.txt"><code>/llms.txt</code></a>. Raw design-philosophy Markdown is also at
+  <a href="https://www.d6e.ai/docs/design-philosophy.md">www.d6e.ai/docs/design-philosophy.md</a>.
+</p>
