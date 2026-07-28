@@ -7,18 +7,28 @@ description: OAuth2 でログインし公開 API を呼ぶ、独立した普通�
 
 特権的な連携は存在しません。セキュリティ境界はインスタンスのままです。
 
-## 最短セットアップ
+## スキルを入れる（推奨: 全部）
+
+カスタム FE だけを入れるケースは稀です。依存するテーブル・プロンプト・WF・STF は Plugin / Docker STF 側の話になることがほとんどなので、**3 リポジトリすべて**を入れてください。設計や質問をエージェントにさせる場合も同様です。
 
 ```bash
-npx skills add d6e-ai/d6e-custom-frontend-skills --skill d6e-auth-integration
-npx skills add d6e-ai/d6e-custom-frontend-skills --skill d6e-workspace-api-client
-npx skills add d6e-ai/d6e-custom-frontend-skills --skill d6e-prompt-driven-ui
+npx skills add d6e-ai/d6e-plugin-skills --skill '*' -y
+npx skills add d6e-ai/d6e-docker-stf-skills --skill '*' -y
+npx skills add d6e-ai/d6e-custom-frontend-skills --skill '*' -y
+```
+
+詳細は [Agent Skills の入れ方](/ja-jp/guides/agent-skills/) を参照してください。
+
+フロントエンド 3 スキルだけの最小セットが必要なときは次です（通常は非推奨）:
+
+```bash
+npx skills add d6e-ai/d6e-custom-frontend-skills --skill '*' -y
 ```
 
 リポジトリ: [d6e-ai/d6e-custom-frontend-skills](https://github.com/d6e-ai/d6e-custom-frontend-skills)  
 リファレンス実装（AI 経理）も同リポジトリに含まれます。
 
-## 3 スキルの役割
+## フロントエンド 3 スキルの役割
 
 | スキル | 担当 |
 |---|---|
@@ -41,6 +51,6 @@ npx skills add d6e-ai/d6e-custom-frontend-skills --skill d6e-prompt-driven-ui
 - [d6e-api-integration.md](https://github.com/d6e-ai/d6e-custom-frontend-skills/blob/main/docs/d6e-api-integration.md) — request/response 詳細
 - [workspace-setup.md](https://github.com/d6e-ai/d6e-custom-frontend-skills/blob/main/docs/workspace-setup.md) — 依存ワークスペースの構築
 
-## Plugin との組み合わせ
+## Plugin / Docker STF との組み合わせ
 
-フロントエンドが依存するテーブル・プロンプト・WF を Plugin としてパッケージ化すると、新しいワークスペースを再現可能に用意できます。切り分けは [開発パスの選び方](/ja-jp/getting-started/choosing-a-path/) を参照してください。
+フロントエンドが依存するテーブル・プロンプト・WF・STF を Plugin としてパッケージ化すると、新しいワークスペースを再現可能に用意できます。重い処理や外部ネットワークが必要なら Docker STF を Plugin に含めます。切り分けは [開発パスの選び方](/ja-jp/getting-started/choosing-a-path/) を参照してください。

@@ -12,10 +12,14 @@ A Docker STF is a State Transition Function implemented as a container in any la
 
 Because it is an ordinary container with no d6e SDK, you can unit-test with local `docker run`.
 
-## Quick setup
+## Install skills
+
+When designing, asking questions, or combining with Plugin / custom FE, prefer [installing all skills](/en-us/guides/agent-skills/). Docker-STF-focused minimum:
 
 ```bash
-npx skills add d6e-ai/d6e-docker-stf-skills --skill d6e-docker-stf-development
+npx skills add d6e-ai/d6e-docker-stf-skills --skill '*' -y
+# Also when packaging into a Plugin
+npx skills add d6e-ai/d6e-plugin-skills --skill '*' -y
 ```
 
 Repository: [d6e-ai/d6e-docker-stf-skills](https://github.com/d6e-ai/d6e-docker-stf-skills)

@@ -19,6 +19,18 @@ description: Cursor / Claude Code / Codex をインスタンスの MCP サーバ
 
 > 原典（正）: [local-ai-development.ja.md](https://github.com/d6e-ai/d6e-plugin-skills/blob/main/docs/local-ai-development.ja.md)
 
+## 0. Agent Skills を入れる（推奨）
+
+設計や質問、Plugin / Docker STF / カスタム FE の実装をエージェントに任せる場合は、先にスキルを入れてください。**迷ったら全部**です。
+
+```bash
+npx skills add d6e-ai/d6e-plugin-skills --skill '*' -y
+npx skills add d6e-ai/d6e-docker-stf-skills --skill '*' -y
+npx skills add d6e-ai/d6e-custom-frontend-skills --skill '*' -y
+```
+
+詳細は [Agent Skills の入れ方](/ja-jp/guides/agent-skills/) を参照してください。
+
 ## 1. API キーを発行する（約 1 分）
 
 1. コンソール（`${D6E_BASE_URL}`）にログイン

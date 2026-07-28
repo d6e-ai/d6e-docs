@@ -12,10 +12,14 @@ Docker STF は、任意言語のコンテナとして実装する State Transiti
 
 d6e 非依存の普通のコンテナなので、ローカル `docker run` で単体テストできます。
 
-## 最短セットアップ
+## スキルを入れる
+
+設計・質問や Plugin / カスタム FE と併用する場合は [全スキル一括](/ja-jp/guides/agent-skills/) を推奨します。Docker STF に絞る場合:
 
 ```bash
-npx skills add d6e-ai/d6e-docker-stf-skills --skill d6e-docker-stf-development
+npx skills add d6e-ai/d6e-docker-stf-skills --skill '*' -y
+# Plugin に梱包するなら合わせて
+npx skills add d6e-ai/d6e-plugin-skills --skill '*' -y
 ```
 
 リポジトリ: [d6e-ai/d6e-docker-stf-skills](https://github.com/d6e-ai/d6e-docker-stf-skills)

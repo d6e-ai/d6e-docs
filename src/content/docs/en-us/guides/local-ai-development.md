@@ -19,6 +19,18 @@ This page is a summary. Full steps, differences, and troubleshooting live in the
 
 > Canonical: [local-ai-development.md](https://github.com/d6e-ai/d6e-plugin-skills/blob/main/docs/local-ai-development.md)
 
+## 0. Install Agent Skills (recommended)
+
+Before asking an agent to design, answer questions, or implement Plugins / Docker STFs / custom frontends, install the skills. **When unsure, install everything.**
+
+```bash
+npx skills add d6e-ai/d6e-plugin-skills --skill '*' -y
+npx skills add d6e-ai/d6e-docker-stf-skills --skill '*' -y
+npx skills add d6e-ai/d6e-custom-frontend-skills --skill '*' -y
+```
+
+See [Installing Agent Skills](/en-us/guides/agent-skills/) for details.
+
 ## 1. Issue an API key (~1 minute)
 
 1. Log into the console (`${D6E_BASE_URL}`)

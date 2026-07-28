@@ -9,9 +9,9 @@ hero:
       link: /ja-jp/getting-started/what-is-d6e/
       icon: right-arrow
       variant: primary
-    - text: 開発パスの選び方
-      link: /ja-jp/getting-started/choosing-a-path/
-      icon: open-book
+    - text: Skills を入れる
+      link: /ja-jp/guides/agent-skills/
+      icon: seti:config
       variant: minimal
 ---
 
@@ -20,6 +20,11 @@ import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
 ## どこから読むか
 
 <CardGrid>
+  <LinkCard
+    title="Agent Skills を入れる"
+    href="/ja-jp/guides/agent-skills/"
+    description="Cursor / Claude Code / Codex 向け。設計・質問・カスタム FE では全スキル推奨"
+  />
   <LinkCard
     title="全体像をつかむ"
     href="/ja-jp/getting-started/what-is-d6e/"
@@ -31,14 +36,9 @@ import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
     description="Cursor / Claude Code / Codex をインスタンス MCP に接続"
   />
   <LinkCard
-    title="REST API リファレンス"
+    title="REST API / MCP リファレンス"
     href="/ja-jp/reference/rest-api/"
-    description="認証・SQL・ファイル・STF・ワークフロー・SaaS"
-  />
-  <LinkCard
-    title="MCP ツール一覧"
-    href="/ja-jp/reference/mcp-tools/"
-    description="約 96 個の d6e_* ツール（チャットエージェントと同じ面）"
+    description="認証・SQL・ファイル・STF・ワークフロー・約 96 ツール"
   />
 </CardGrid>
 
@@ -54,17 +54,21 @@ import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
     [ガイド →](/ja-jp/guides/docker-stf/)
   </Card>
   <Card title="カスタムフロントエンド" icon="laptop">
-    OAuth2 でログインし公開 API を呼ぶ、独立した普通の Web アプリ。
+    OAuth2 でログインし公開 API を呼ぶ、独立した普通の Web アプリ。多くの場合 Plugin / Docker STF も併用。
     [ガイド →](/ja-jp/guides/custom-frontend/)
   </Card>
 </CardGrid>
 
-## AI エージェント向け
+## AI エージェント向け（まずこれ）
+
+設計や質問をする前に、**3 リポジトリのスキルをすべて**入れてください。カスタム FE 単体でもワークスペース側の知識が必要になることがほとんどです。
+
+```bash
+npx skills add d6e-ai/d6e-plugin-skills --skill '*' -y
+npx skills add d6e-ai/d6e-docker-stf-skills --skill '*' -y
+npx skills add d6e-ai/d6e-custom-frontend-skills --skill '*' -y
+```
+
+手順の詳細・パス別の最小セットは [Agent Skills の入れ方](/ja-jp/guides/agent-skills/) を参照してください。
 
 このサイトの全文は [`/llms.txt`](/llms.txt) から取得できます。設計思想の raw Markdown は [www.d6e.ai/docs/design-philosophy.ja.md](https://www.d6e.ai/docs/design-philosophy.ja.md) でも配信しています。
-
-実装スキル（Agent Skills）は次の公開リポジトリにあります。
-
-- [d6e-plugin-skills](https://github.com/d6e-ai/d6e-plugin-skills)
-- [d6e-docker-stf-skills](https://github.com/d6e-ai/d6e-docker-stf-skills)
-- [d6e-custom-frontend-skills](https://github.com/d6e-ai/d6e-custom-frontend-skills)

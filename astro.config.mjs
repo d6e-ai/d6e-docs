@@ -76,6 +76,11 @@ export default defineConfig({
 					translations: { 'en-us': 'Guides' },
 					items: [
 						{
+							label: 'Agent Skills の入れ方',
+							translations: { 'en-us': 'Installing Agent Skills' },
+							slug: 'guides/agent-skills'
+						},
+						{
 							label: 'ローカル AI 開発',
 							translations: { 'en-us': 'Local AI development' },
 							slug: 'guides/local-ai-development'

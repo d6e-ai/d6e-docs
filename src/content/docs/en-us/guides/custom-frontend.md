@@ -7,18 +7,28 @@ A custom frontend is an independently deployed web app that logs users in via th
 
 There is no privileged integration. The security boundary stays on the instance.
 
-## Quick setup
+## Install skills (recommended: everything)
+
+Installing frontend skills alone is rarely enough. Dependent tables, prompts, workflows, and STFs usually live on the Plugin / Docker STF side — so install **all three repositories**. The same applies when asking an agent to design or answer questions.
 
 ```bash
-npx skills add d6e-ai/d6e-custom-frontend-skills --skill d6e-auth-integration
-npx skills add d6e-ai/d6e-custom-frontend-skills --skill d6e-workspace-api-client
-npx skills add d6e-ai/d6e-custom-frontend-skills --skill d6e-prompt-driven-ui
+npx skills add d6e-ai/d6e-plugin-skills --skill '*' -y
+npx skills add d6e-ai/d6e-docker-stf-skills --skill '*' -y
+npx skills add d6e-ai/d6e-custom-frontend-skills --skill '*' -y
+```
+
+See [Installing Agent Skills](/en-us/guides/agent-skills/) for details.
+
+Frontend-only minimal set (usually not recommended):
+
+```bash
+npx skills add d6e-ai/d6e-custom-frontend-skills --skill '*' -y
 ```
 
 Repository: [d6e-ai/d6e-custom-frontend-skills](https://github.com/d6e-ai/d6e-custom-frontend-skills)  
 A reference implementation (AI bookkeeping) ships in the same repo.
 
-## What the three skills cover
+## What the three frontend skills cover
 
 | Skill | Responsibility |
 |---|---|
@@ -41,6 +51,6 @@ Frontends **never hold a client secret**. Register production callback URLs in d
 - [d6e-api-integration.md](https://github.com/d6e-ai/d6e-custom-frontend-skills/blob/main/docs/d6e-api-integration.md) — request/response shapes
 - [workspace-setup.md](https://github.com/d6e-ai/d6e-custom-frontend-skills/blob/main/docs/workspace-setup.md) — preparing the dependent workspace
 
-## Combining with Plugins
+## Combining with Plugin / Docker STF
 
-Package the tables, prompts, and workflows your frontend depends on as a Plugin so new workspaces can be provisioned reproducibly. See [Choosing a path](/en-us/getting-started/choosing-a-path/).
+Package the tables, prompts, workflows, and STFs your frontend depends on as a Plugin so new workspaces can be provisioned reproducibly. Include Docker STFs in the Plugin when you need heavy compute or external network access. See [Choosing a path](/en-us/getting-started/choosing-a-path/).
