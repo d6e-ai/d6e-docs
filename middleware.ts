@@ -11,6 +11,7 @@ const DEFAULT_LOCALE = 'ja-JP';
 
 const PASSTHROUGH_PREFIXES = [
 	'/llms',
+	'/sitemap',
 	'/_astro',
 	'/pagefind',
 	'/favicon',
