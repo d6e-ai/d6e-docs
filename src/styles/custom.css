@@ -1,0 +1,30 @@
+/* d6e Docs custom theme.
+ * Aligns accent colors with the d6e-auth landing page (cool slate/blue,
+ * not purple). Logo sizing and content width tweaks for readability.
+ */
+
+:root {
+	--sl-color-accent-low: #e8eef5;
+	--sl-color-accent: #3b5b8a;
+	--sl-color-accent-high: #1e3a5f;
+	--sl-font: 'Inter', 'Hiragino Sans', 'Noto Sans JP', system-ui, sans-serif;
+}
+
+:root[data-theme='dark'] {
+	--sl-color-accent-low: #1a2838;
+	--sl-color-accent: #7a9bc4;
+	--sl-color-accent-high: #c5d4e8;
+}
+
+.site-title img {
+	height: 1.75rem;
+	width: auto;
+}
+
+.sl-markdown-content table {
+	font-size: 0.9rem;
+}
+
+.sl-markdown-content pre {
+	font-size: 0.85rem;
+}
